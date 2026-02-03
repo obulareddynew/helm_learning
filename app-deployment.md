@@ -15,7 +15,7 @@ Developer → GitLab → CI/CD → OpenShift
 
   Repository Structure (Production-ready)
 
-  ```
+```
   myapp/
 ├── app/
 │   ├── main.py
