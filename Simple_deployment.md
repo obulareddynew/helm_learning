@@ -136,3 +136,153 @@ Install dependencies first
 
 Docker layer caching optimization
 ```
+COPY main.py .
+```
+Copy application code
+
+```
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+```
+- Starts the app
+
+- Listens on 8080 (important for K8s)
+
+### Why Docker?
+
+- Same runtime everywhere
+
+- No “works on my machine” issues
+
+- Required for Kubernetes
+
+### Better approaches
+
+- Use multi-stage builds for larger apps
+
+- Use non-root user for security
+
+- Add healthcheck
+
+## 4️⃣ Helm layer (Kubernetes/OpenShift)
+Helm = package manager for Kubernetes
+
+Instead of writing raw YAML per environment, you:
+
+- Template it
+
+- Inject values dynamically  
+
+### Chart.yaml
+```
+apiVersion: v2
+name: myapp
+version: 0.1.0
+```
+Purpose
+
+- Metadata about the Helm chart
+
+- Helm uses this to identify the app
+
+- Think of this like package.json for Kubernetes.
+
+### values.yaml (default values)
+```
+replicaCount: 1
+
+image:
+  repository: ""
+  tag: ""
+
+env:
+  ENV: default
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+```
+Why this exists
+
+- Central config file
+
+- Templates read from .Values
+
+## Environment-specific values
+### values-dev.yaml
+```
+env:
+  ENV: dev
+```
+### values-test.yaml
+```
+replicaCount: 2
+env:
+  ENV: test
+```
+### values-prod.yaml
+```
+replicaCount: 3
+env:
+  ENV: prod
+```
+Why this approach?
+
+- Same chart
+
+- Different behavior per environment
+
+- No duplication of YAML
+
+✅ Very good practice
+
+## 5️⃣ Helm templates
+
+### _helpers.tpl
+```
+{{- define "myapp.name" -}}
+myapp
+{{- end }}
+
+{{- define "myapp.fullname" -}}
+{{ .Release.Name }}-{{ include "myapp.name" . }}
+{{- end }}
+```
+Why helpers?
+
+- Avoid repetition
+
+- Consistent naming everywhere
+
+Example:
+```
+Release name: myapp-dev
+Result: myapp-dev-myapp
+```
+### deployment.yaml
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "myapp.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "myapp.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "myapp.name" . }}
+    spec:
+      containers:
+        - name: myapp
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV
+              value: {{ .Values.env.ENV | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+```
