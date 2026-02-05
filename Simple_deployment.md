@@ -286,3 +286,24 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 ```
+```
+replicas: {{ .Values.replicaCount }}
+```
+→ Scales app per environment
+```
+image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+```
+→ Injected by CI pipeline
+```
+env:
+  - name: ENV
+    value: {{ .Values.env.ENV | quote }}
+```
+→ Passes ENV to FastAPI
+
+
+```
+resources:
+  {{- toYaml .Values.resources | nindent 12 }}
+```
+→ Resource requests (important for cluster stability)
