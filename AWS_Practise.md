@@ -58,5 +58,39 @@ Amazon S3 also provides a wide range of storage classes.
 -  If you delete an object it is not permanently deleted, Amazon S3 inserts a delete marker.
 -  If you overwrite an object, it results in a new object version in the bucket. you can restore the previous version as long as the object has not been deleted.
 
--  
--  
+ #### More Information:
+- When Configured for a static website hosting, the S3 bucket receives a dedicated URL Requests to this URL promt Amazon S3 to serve the buckets designated root object(typically the main HTML file)
+- Access tp the S3 bucket and its content is controlled through permissions, which are defined in a bucket policy.
+- A bucket policy, written in JSON format, specifies who can access the bucket and what operations they can perform.
+
+### Amazon S3 Access Management:
+- By default all Amazon S3 resources, such as buckets and objects are private.
+- Only resource owner an AWS account that created it, can access the resource.
+- The resource owner can optionally grant access. or permissions to others by writing an access policy
+- Amazon S3 offers access policy options that can be broadly categorized as **resource-based policies and user policies**.
+- **Resource based policies** are access policies that you attach to your resources such as buckets and objects Bucket policies and access control lists, or ACLs(access Control Lists) are resource-based policies, you can also authenticate certain types of data access using query-string authentication to grant temporary access to others with time limited URLs.
+- **User policies** are access policies that you attach to users. Access can be granted to users using AWS IAM policies.
+- You may choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources.
+- **Access Control list** is a legacy access control mechanism as a general rule. AWS recommends using S3 bucket policies or IAM policies for access control.
+- When Amazon S3 receives a request it must evaluate all the access policies to determine whether to authorize or deny the request.
+
+ #### Resource Based policies:
+ **Access Control Lists**
+ - Each bucket and object has an access control list. an ACL associated with it.
+ - Access control lists use Amazon S3-specific-XML schemaIt defines which AWS accounts or groups are granted access and the type of access they have.
+ - When you create a bucket or an object, Amazon S3 creates a default ACL. that grants the resource owner full control over the resource.
+ - You can use access control lists to grant basic read or write permissions to other AWS accounts.
+ - A Bucket policy, written in JSON, is attached to an S3 bucket.It provides access permissions to the S3 bucket and all objects in it.
+ - Here is an example of an S3 bucket policy this S3 bucket policy allows the principal the root account, and the IAM user Alice under that account to perform any S3 operations.The wildcard astrisk character after the S3 in the action statement indicates that all S3 operations are allowed. Particularly, you can perform S3 operations only on specific resources as shown in the resource statement.In this case, only the S3 bucket with name  my_bucket and all objects in it are allowed As you can see, you can use the slash and asterisk after the bucket name to indicate all objects in the bucket.
+
+**User Policies**
+
+- User policies control who has access to your Amazon S3 resources and is written in JSON. You can use AWS Identity and Access Management, or AWS IAM to create users, groups, and roles in your account and attach access policies to grant them access to Amazon S3.
+- Lets look at an IAM policy example unlike bucket policies , IAM policy does not require a principal element because principal is by default the entity that the IAM policy is attached to that first part of the policy specifies bucket-level permissions It allows the ListBucket action so that applications. can list all objects in the test bucket. the second part specifies object level permissions It allows PutObject, GetObject, and DeleteObject actions so that applications can write, read and delete any objects in the test bucket.
+
+
+ #### More Information:
+ - JSON is a standardized data format that is both human readable and machine readable, widely used across AWS services and applications.
+ - When city residents access the web portal for beach wave information, their browsers send GET requests to the static webpages URL, which serves the index.html root object.
+ - The root object can be renamed from index.html to waves.html with S# bucket settings updated accordinly to reference the new filename.
+ - 
