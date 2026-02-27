@@ -93,4 +93,89 @@ Amazon S3 also provides a wide range of storage classes.
  - JSON is a standardized data format that is both human readable and machine readable, widely used across AWS services and applications.
  - When city residents access the web portal for beach wave information, their browsers send GET requests to the static webpages URL, which serves the index.html root object.
  - The root object can be renamed from index.html to waves.html with S# bucket settings updated accordinly to reference the new filename.
- - 
+
+
+# EC2 Instances
+
+## AWS Global infrastructure Overview:
+
+- The AWS Global Infrastructure delivers cloud solutions that companies depend on, no matter their size, changing needs or challenges.
+- The infrastructure is designed and built to deliver flexible, relaiable, scalable and secure cloud computing environment with high quality global network performance.
+- AWS provides an extensive global footprint, helping make sure your worldwide customers are served. you can rapidly expand operations to virtually any geographic region or country.
+- As of 2025, AWS now spans over 100 availability zones within over 35 AWS regions around the world.
+- The footprint is continuously expanding with announced plans for even more availability zones and regions.
+- This expansion is paired with commitment to continue using renewable energy sources.
+- The AWS global infrastructure consists of regions and availability zones or AZs. AWS cloud computing resources are hosted in multiple world wide locations referred to as AWS regions. Each region is a seperate geographic area and has multiple isolated locations known as availability zones.
+- A region has at least two AZs. Most have three,including all new regions, and several have as many as six.
+- AZs are fully isolated and are many kilometers apart from each other for complete redundancy.
+- Each AZ consists of one or more discrete data centers, typically three.at full scale these data centers can include hundreds of thousands of servers.
+- To help provide maximum reliability,each data center is housed in separate facilities with redundant power and dedicated metro fiber connectivity.
+- AWS network each AZ data center and AWS region is interconnected through a purpose-built, highly available, low latency private global network with a fully redundant parallel fiber network.
+- Points of Presence(PoP) with its fully managed Amazon CloudFront service.
+- AWS provides a global content delivery network or CDN that you can use to securely deliver data to end users.
+- CloudFront provides low latency and high transfer speeds through a world wide network of global point of presence, or POP, locations. This network consists of edge locations and regional Edge cache servers, partioning, Azs help with partitionaning which helps protect your application from natural disasters such as lightning strikes, tornadoes and earthquakes.
+- For example you might deploy an application across multiple Azs and use a load balancer to distribute traffic across them. if one AZ experience an outage, traffic is routed to another AZ, keeping the application up and running.
+
+### Amazon EC2 Overview:
+
+Amazon Elastic Compute Cloud(EC2):
+- Amazon Elastic Compute Cloud - or EC2 - is a web service that provides secure, resizable compute capacity in the cloud. It eliminates your need for up-front hardware investment so you can develop and deploy applications faster.
+- You can use Amazon EC2 to launch as many or as few virtual servers as you need.
+- Amazon EC2 enables you to scale up or down within minutes to handle changes or spikes in requirements, reducing your need to forecast traffic.
+- It provides you with complete control of your computing resources and lets you run on Amazon's proven, reliable, and scalable computing environment.
+- Amazon EC2 is hosted in multiple locations world wide comprised of AWS regions, which consistes of atleast 3 availability zones.
+- This computing environment provides high availability, with service-level agreement, SLA, commitment, of 99.99% availability for each Amazon EC2 region.
+- In addition, security at AWS is our top priority. AWS is built to meet the requirements of the most security sensitive organizations.
+
+##### First, lets go through some of the Amazon EC2 basics.
+**What is an Instance**
+- An instance is a virtual server in the cloud .
+- Amazon EC2 provides a wide selection of instance types to enable you to choose the CPU, memory, storage, networking capacity, and GPU for your applications.
+- Here are the instance type categories
+     - **General Purpose** instances are instances, that provide a balance, of compute, memory, and networking resources. Eg: Web Server
+     - **Compute Optimized** instances are optimized for compute intensive workloads. Eg: Game
+     - **Memory Optimized Instances** These instances are for memory-intensive workloads that process large data sets in memory: Eg: Big Data Analytics
+     - **Storage Optimized Instances** They are designed for workloads that require sequencial read and write access to very large data sets on local storage. Eg: Data Warehousing
+     - **Accelerated computing instances** These are GPU instances that use hardware accelerators. Eg: Machine or Deep Learning
+     - **HPC optimized instances** These instances are optimized for high performance computing workloads. Eg: complex Simulations.
+- above instance types are optimized to fit different use cases. given just one of the many examples for each instance types.
+- In addition, each instance type includes one or more instance sizes, allowing you to scale your resources to the requirements of your target workload.
+
+**AMI(Amazon Machine Image)**:
+- An AMI provides the information required to launch an instance. It is a tempplate that contains a software configuration such as an operating system, applications, and an application server.
+- You must specify an AMI, When you launch an instance.
+- You can kaunch a single instance or multiple instances from an AMI.
+
+### AWS Global Infrastructure Benefits:
+- AWS Global Infrastrure benefits:
+     - Performance(High Quality and uninterrupted performance)
+          - It offers customers a high performing low latency, high scalable, high avaialibilty, secure cloud infrastructure and responds to changing needs fast without any drop in performance. AWS provides customers with highest levels of availability and reliability.
+          - AWS availability zones are designed for physical redundancy and provide resilience enabiling uninterrupted performance with no signle points of failure. Every component of the AWS infrastructure is designed and built for redundancy and reliability from regions to networking links to load balancers to routers and firmware.
+          - In addition, The AWS Global oInfrastrure is built on Amazon's own custom hardware such as custom purpose built compute servers, load balancers, routers, and silicon.
+          - AWS optimizes this hardware for only one set of requirements - workloads run by AWS customers.
+          - By using custom hardware, AWS provides customers with the highest levels of reliability, the fastest pace of innovation all at the lowest possible cost.
+     - Security:
+          - our core infrastrure is designed to meet the most stringent security requirements in the world and is built to satisfy the security requirements for military, global banks, and other high sensitivity organizations.
+          - our infrastructure is monitored 24/7 to help ensure the confidentiality, integritry and availability of our customers data.
+     - Scalability:
+          - The AWS Global Infrastructure enables companies to be extremely flexible and take advantage of the conceptually infinite scalability of the cloud.
+          - Customers can provision the amount if resources that they actuvally need knowing they can instantly scale up or down along with the needs of their business.
+          - Companies can quickly spin up resources as they need them, deploying hundreds or even thousands of servers in minutes.
+     - Low Cost
+          - With the industryts most extensive data center footprint, the AWS Global infrastructure enables more customers to benfit from cloud economics of scale and reduce the total cost of ownership(T.C.O) of their overall I.T Infrastructure.
+
+## Amazon Elastic Block Store(EBS):
+- is a service that provides block-level storage volumes for use with Amazon Elastic Compute Cloud, or EC2 Instances.
+- EBS volumes behave like raw, unformatted block devices in the cloud.
+- You can mount EBS volumnes as a device on your EC2 instance.
+- Each EBS volume can be attached to only one instance at a time but multiple valumes of EBS can be on the same instance.
+- Since EBS volumes are mounted to the instances, they can provide single-digit milliseconds latency, which is extremely low latency between where the data is stored and where it might be used on the instance.
+- EBS volumes are designed for both throughtput and transaction intensive workloads at any scale.
+- Amazon EBS offers data persistence. All the data on the attached EBS volume remains available even after you stop or terminate an Amazon EC2 instance.
+- Amazon EBS provides two major storage volume types.
+     - **Solid State drive or SSD-backed storage**: is optimized for transactional workloads, which involve frequent read/write operations with small I/O size. Some use case examples include databases and boot volumes.SSD-backed volumes include the highest-performance provisioned IOPS SSD, io2 and io1, for latency-sensitive transactional workloads. general-purpose SSD volumes, gp3 and gp2 balance price and performance for a wide variety of transactional data. gp3 volumes enable customers to provision performance independent of storage capacity. The dominet performance for SSD-backed volumes depends primarily on IOPS (input/output operations per sec)
+     - **Hard disk drive or HDD backed storage**: HDD-backed storage is for throughput-intensive workloads such as MapReduce,data warehouse, and log proicessing . HDD-backed volumes include throughout-optimized HDD. st1, for frequenctly accessed throughput-intensive workloads. The lowest cost cold HDD, sc1, is for less frequently accessed data. Dominent performance for HDD-backed volumes depends primarily on throughput measured in megabytes per second.
+     - 
+     - 
+
+
