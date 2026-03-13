@@ -175,7 +175,39 @@ Amazon Elastic Compute Cloud(EC2):
 - Amazon EBS provides two major storage volume types.
      - **Solid State drive or SSD-backed storage**: is optimized for transactional workloads, which involve frequent read/write operations with small I/O size. Some use case examples include databases and boot volumes.SSD-backed volumes include the highest-performance provisioned IOPS SSD, io2 and io1, for latency-sensitive transactional workloads. general-purpose SSD volumes, gp3 and gp2 balance price and performance for a wide variety of transactional data. gp3 volumes enable customers to provision performance independent of storage capacity. The dominet performance for SSD-backed volumes depends primarily on IOPS (input/output operations per sec)
      - **Hard disk drive or HDD backed storage**: HDD-backed storage is for throughput-intensive workloads such as MapReduce,data warehouse, and log proicessing . HDD-backed volumes include throughout-optimized HDD. st1, for frequenctly accessed throughput-intensive workloads. The lowest cost cold HDD, sc1, is for less frequently accessed data. Dominent performance for HDD-backed volumes depends primarily on throughput measured in megabytes per second.
-     - 
-     - 
+
+ ## DNS (Domain Name System):
+- Welcome to an overview of DNS, or Domain Name System
+- Computers on the internet commi=unicate with one another by using numbers known as IP addresses. When you visit a website you don't have to remember a long number, instead, you can enter a domain name like www.example.com that is easier to remember. A DNS service such as **Amazon Route 53** is globally distributed service that translates human readable names like www.example.cominto a numeric addresses like 192.0.2.1 that computers use to connect to each other.
+- The interner's DNS (system) works much like a phone book by managing the mapping between names and numbers.
+- DNS servers translate requests for names into IP addresses, controlling which server an end user will reach when they type a domain name into their web server. Tese requests are called queries. Let's take a look at how DNS queries work
+     - First, the host sends a DNS request to the local DNS server.
+     - Second, the DNS server which is preconfigured with the list if root name servers, randomly selects one root name server for the "A" record www.example.com
+     - An "A" record maps a domain name like example.com to an IP address of the computer that hosts the domain.
+     - Third, the root name server responds with a list of authoritative name servers for the .com zone, along with a list of the IP addresses.
+     - Fourth, the DNS server randomly selects one of the authoritative name servers returned in step three and sends another DNS query for the "A" record example.com to the top-level somain server.
+     - Fifth, the top-level domain name server responds with a list if name servers. that are authoritative for the domain example.com.
+     - Sixth, the DNS server randomly selects ione of the authoritative name servers returned in step five and sends another DNS query for the "A" record example.com
+     - Seventh, since the name server receiving the query in step six is authoritative for the domain example.com, the name server responds to the DNS server with the IP address value of the "A" record for example.com.
+     - And for the final step, the DNS server sends the DNS response with the IP address back to the host, which enables the host computer to connect to www.example.com
+
+## AWS support overview
+- AWS provides multiple tiers of support to help customers succeed with their AWS implementations.
+- The support plans include basic, which is free and automatic for all customers, Developer, Business, Enterprise On-Ramp, and Enterprise.
+- The Basic plan offers customer service for account and billing questions, support forums, service health checks and documentation.
+- The other paid plans provide all of these options plus unlimited technical support cases with monthly pricing and no long-term contracts.
+
+#### Technical resources and documentation overview 
+- Numerous other AWS technical resources are available across different environments and repositories. You can use the AWS documenation website for find helpful resources, such as user guides, whitepapers, tutorials, code samples, software developemnt kits and references.
+- AWS perscriptive Gidance provides time-tested strategies, guides, and patterns to help accelerate your cloud migration, modernization and optimization projects.
+- These resources were developed by AWS technology experts and the global community of AWS partners, based on their years of experience helping customers realize their business objectives on AWS.
+- AWS re:Post provides several types of knowledge resources, such as knowledge center articles, community articles, and questions and answers. The AWS Trust and Safety Center provides information on how to report activity or content on AWS that you suspect is abusive, how to address an abuse notice that you receive from AWS Trust anhd Safety ,
+- AWS services that you can use to protect your applicaions and best practices for digital messaging.
+
+#### AWS Trusted Advisor:
+- moniters AWS infrastructure services, identifies customer configurations, compares them to known best practices, and notifies customers about oportunities to save money, improve system performance or close security gaps.
+- Trusted Advisor evaluates AWS accounts by using checks across five key categories, cost optimization, security, fault tolerance, performance and service limits
+- Basic support and Developer support custometrs get access to 6 security checks and 50 service limkit checks, while Business support and Enterprise support customers have access to all 115 trusted Advisor checks. 
+ 
 
 
